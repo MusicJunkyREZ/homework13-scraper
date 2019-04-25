@@ -80,9 +80,24 @@
         console.log("nice click")
         $.ajax({
             method: "PUT",
-            url: "/delete/" + id
+            url: `/delete/${id}`
         }).then(function(){
             location.reload()
         })
     })
-</script>
+
+    $(document).on("click", ".note-input", function(){
+        var id = $(this).attr("id")
+        $("#article-id").text()
+        $("#save-note").attr("data", id)
+        $.ajax(`/articles/${id}` , {
+            method: "GET",
+        }).then(function(data){
+            console.log(data);
+            $(".articles-available").empty();
+            $(".articles-available").append($(`<li class='list-group-item'>${id}<button type='button' class='btn btn-danger btn-sm float-right btn-deletenote' data='${id}'>X</button></li>`))
+
+        })
+        $("#note-modal").modal("toggle")
+    })
+</script

@@ -8,7 +8,7 @@ var cheerio = require("cheerio"); //Scraper
 var db = require("./models");
 
 // Port configuration for local/Heroku
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
@@ -124,6 +124,7 @@ app.put("/delete/:id", function(req,res){
     db.Article.findOneAndUpdate({_id: req.params.id}, {isSaved: false})
         .then(function(data){
             console.log("Deleted!")
+            res.json(data)
         })
         .catch(function(err){
             res.json(err)
