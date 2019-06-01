@@ -120,7 +120,7 @@ app.put("/saved/:id", function(req, res){
         })
 })
 
-app.put("/delete/:id", function(req,res){
+app.delete("/delete/:id", function(req,res){
     db.Article.findOneAndUpdate({_id: req.params.id}, {isSaved: false})
         .then(function(data){
             console.log("Deleted!")

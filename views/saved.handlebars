@@ -37,8 +37,8 @@
                         <p class="card-text">
                             {{summary}}
                         </p>
-                        <button data="{{_id}}" class="btn btn-info note-btn">Notes</button>
-                        <button data="{{_id}}" class="btn btn-danger delete-btn">Delete</button>
+                        <button id="{{_id}}" class="btn btn-info note-btn">Notes</button>
+                        <button id="{{_id}}" href="/delete" class="btn btn-danger delete-btn">Delete</button>
                     </div>
                 </div>
             {{/each}}
@@ -78,6 +78,7 @@
     $(document).on("click", ".delete-btn", function(){
         var id = $(this).attr("id")
         console.log("nice click")
+        console.log(id)
         $.ajax({
             method: "PUT",
             url: `/delete/${id}`
